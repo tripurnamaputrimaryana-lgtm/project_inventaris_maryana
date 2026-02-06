@@ -5,20 +5,15 @@
 <div class="container-xxl flex-grow-1 container-p-y">
 
     <!-- Page Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
         <div>
             <h4 class="fw-bold mb-1 text-dark">Edit User</h4>
-            <p class="text-muted mb-0">
-                Update user information and role
-            </p>
+            <p class="text-muted mb-0">Update user information and role</p>
         </div>
-        <a href="{{ route('dashboard.users.index') }}" class="btn btn-outline-primary rounded-pill px-4">
-            <i class="bx bx-arrow-back me-1"></i> Back
-        </a>
     </div>
 
     <!-- Card -->
-    <div class="card shadow-sm border-0">
+    <div class="card shadow-sm border-0 rounded-3">
         <div class="card-body">
 
             <form action="{{ route('dashboard.users.update', $user->id) }}" method="POST">
@@ -74,8 +69,7 @@
                     <!-- Password -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">
-                            Password
-                            <small class="text-muted">(Leave blank if unchanged)</small>
+                            Password <small class="text-muted">(Leave blank if unchanged)</small>
                         </label>
                         <input type="password"
                                name="password"
@@ -95,7 +89,7 @@
                         Cancel
                     </a>
                     <button type="submit"
-                            class="btn btn-primary rounded-pill px-4">
+                            class="btn btn-primary rounded-pill px-4 hover-move">
                         <i class="bx bx-save me-1"></i> Save Changes
                     </button>
                 </div>
@@ -106,4 +100,33 @@
     </div>
 
 </div>
+
+@push('styles')
+<style>
+.card {
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(15,23,42,0.06);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4f46e5, #38bdf8);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79,70,229,.35);
+}
+
+.hover-move {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-move:hover {
+    transform: translateY(-2px);
+}
+</style>
+@endpush
+
 @endsection

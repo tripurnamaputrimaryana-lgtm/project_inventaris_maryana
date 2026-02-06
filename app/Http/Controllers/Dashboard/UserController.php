@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UserExport;
+use PDF;
 
 class UserController extends Controller
 {
@@ -86,5 +89,17 @@ class UserController extends Controller
             "message" => "Data Successfully Deleted",
         ]);
         return redirect()->route('dashboard.users.index');
+    }
+
+     public function exportExcel()
+    {
+        return Excel::download(new UserExport, 'users.xlsx');
+    }
+
+    public function exportPdf()
+    {
+        $users = User::all();
+        $pdf = PDF::loadView('dashboard.users.pdf', compact('users'));
+        return $pdf->download('users.pdf');
     }
 }

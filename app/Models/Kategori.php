@@ -1,13 +1,20 @@
 <?php
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Kategori extends Model
 {
-    protected $table = 'kategori';
+    use HasFactory;
 
-    protected $fillable = ['nama', 'deskripsi'];
+    protected $table = 'kategoris';
+
+    protected $fillable = [
+        'nama',
+        'deskripsi'
+    ];
 
     public function barang()
     {
